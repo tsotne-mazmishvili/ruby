@@ -1,0 +1,126 @@
+=begin
+#1
+original_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+original_array.each{|x| print "#{x} "}
+
+#2
+new_array = []
+original_array.each{|x| new_array << x if x > 5}
+print "\nnew_array: #{new_array}"
+
+#3
+array_of_odds = new_array.select {|x| x.odd? }
+puts "\narray_of_odds: #{array_of_odds}"
+
+#4
+original_array <<  "11"
+original_array.unshift "0"
+print "append and unshift: #{original_array}"
+
+#5
+original_array.delete("11")   #original_array.pop
+original_array << "3"
+puts "\ndelete 11 and appedn 3: #{original_array}"
+
+
+#6
+hash_for_uniq = {}   # setis gamoyenebac shegvedzlo
+original_array.each_with_index {|x, y| hash_for_uniq [x] = y}
+puts hash_for_uniq
+
+
+
+
+#7
+arr = ['snow', 'winter', 'ice', 'slippery', 'salted roads', 'white trees']
+arr.delete_if {|x| x.start_with?("s")}
+puts "delete if starts ith s: #{arr}"
+
+arr = ['snow', 'winter', 'ice', 'slippery', 'salted roads', 'white trees']
+arr.delete_if {|x| x.start_with?("s", "w")}
+puts "delete if starts ith s or w: #{arr}"
+
+#8
+fruit_string = "boulder, apple, banana, peach, cow"
+array_from_string = fruit_string.split(', ')
+puts "array from string #{array_from_string}"
+
+array_from_string.pop
+puts "pop last element: #{array_from_string}"
+
+array_from_string.shift
+puts "pop first element: #{array_from_string}"
+
+array_to_string = array_from_string.join(", ")
+puts "after join: #{array_to_string}"
+
+
+#9
+def with_these_numbers(n, m)
+  yield n, m
+end
+
+with_these_numbers(1, 4) do |first, second|
+  puts first + second # Output: 5
+end
+
+with_these_numbers(3, 6) do |first, second|
+  puts first * second # Output: 18
+end
+
+with_these_numbers(12, 3) do |first, second|
+  puts first / second # Output: 4
+end
+
+
+
+#10
+class Rectangle
+  attr_reader :width, :height
+
+  def width=(value)
+    if value < 0
+      raise "Width can't be negative!"
+    end
+    @width = value
+  end
+
+  def height=(value)
+    if value < 0
+      raise "Height can't be negative!"
+    end
+    @height = value
+  end
+
+private
+  def area
+    width * height
+  end
+end
+
+
+
+class Square < Rectangle
+
+  def width=(value)
+    if value < 0
+      raise "Width can't be negative!"
+    end
+    @width = @height = value
+  end
+
+  def height=(value)
+    if value < 0
+      raise "Width can't be negative!"
+    end
+    @height = @width = value
+  end
+  def s_area
+    area
+  end
+end
+
+a = Square.new
+a.height = 8
+puts a.s_area
+=end
