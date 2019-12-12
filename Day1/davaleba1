@@ -1,0 +1,161 @@
+=begin
+class Student
+	attr_accessor :name, :last_name, :age, :id_number
+
+	def initialize(name, last_name, age,id_number)
+		@name = name
+		@last_name = last_name
+		@age = age
+		@id_number = id_number
+	end
+
+	def check_if_age_is_odd
+		result = @age.odd?
+	end
+
+	def sum_array_integers(array)
+		result = 0
+		array.each{|x| result += x}
+    return result
+	end
+end
+
+student1 = Student.new('gio', 'xarbedia', 19, 59854)
+student2 = Student.new('ana', 'arutinova', 21, 65897)
+student3 = Student.new('besiki', 'xvedelidze', 20, 59545)
+
+array = [1,2,3,4,5,6]
+array_of_students = [student1, student2, student3]
+puts student1.check_if_age_is_odd
+puts student1.sum_array_integers(array)
+=end
+
+
+
+=begin
+space = " "
+simbolo = "*"
+
+2.times do
+  puts (simbolo + space) * 4
+  puts (space + simbolo) * 3
+end
+=end
+
+
+=begin
+def print_star
+space = " "
+simbolo = "*"
+iter = 0
+n = 0
+
+while iter < 8
+  if iter > 3
+
+    iter += 1
+    n -= 1
+    puts space * n + simbolo
+  else
+    puts space * n + simbolo
+    iter += 1
+    n += 1
+  end
+
+end
+end
+
+3.times do
+  print_star
+end
+=end
+
+
+=begin
+def print_all_even
+	for x in 1..50
+		puts x * x if x.even?
+	end
+end
+
+print_all_even()
+=end
+
+
+
+
+=begin
+def array_sum(array_of_integers)
+	return 0 if array_of_integers.length == 0
+
+	result = 0
+	array_of_integers.each{|x| result+=x}
+	return result
+end
+
+puts array_sum([1,2,3,4])
+=end
+
+=begin
+def array_sum_to_n?(array, n)
+	for x in array
+    num_to_check = n - x
+    #ori if statement damchirda, rom agmomefxvra problema, tavisitavi ar chaetvala
+    if array.include?(num_to_check) && x != num_to_check  && array.count(x) == 1
+      return true
+
+    elsif array.include?(num_to_check) && x == num_to_check && array.count(x) > 1
+      return true
+
+    end
+
+	end
+	return 0
+end
+
+puts array_sum_to_n?([1,2,3,4], 5)
+=end
+
+
+
+=begin
+test_hash = {
+	:val1 => 'asd'
+}
+
+def hash_has_keys?(hash, key)
+	return true if hash[key] != nil
+end
+
+puts hash_has_keys?(test_hash, :val1)
+=end
+
+
+
+=begin
+test_hash2 = {
+	:a => "1",
+	:b => "2",
+	:c => "3"
+}
+
+test_hash2.each { |key, value| test_hash2[key] = value.to_i }
+puts test_hash2
+=end
+
+=begin
+def array_to_hash(array, hash)
+	n = 0
+	array.each do |x|
+		hash[n] = x
+		n+=1
+  end
+end
+
+
+test_hash3 = {}
+array = ["aleko", "beqa", "gio"]
+
+array_to_hash(array, test_hash3)
+puts test_hash3
+=end
