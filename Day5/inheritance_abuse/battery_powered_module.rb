@@ -6,6 +6,6 @@ module BatteryPowered
   end
 
   def charge
-    self.power_level += 1
+    @power_level += 1
   end
 end
