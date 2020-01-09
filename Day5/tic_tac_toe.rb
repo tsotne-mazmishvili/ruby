@@ -48,8 +48,6 @@ def tic_tac_toe(player1, player2)
       if (1..9).include?(recieved_value) == false || values[recieved_value] != values.keys[recieved_value - 1]
         puts "!!number is already used or wrong character!!"
         redo
-      else
-        used_numbers << recieved_value
       end
 
       values[recieved_value], turn = "X", player1 if turn_counter % 2 == 0
