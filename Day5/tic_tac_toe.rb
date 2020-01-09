@@ -1,65 +1,44 @@
-def check_winner(values, turn)
-  if values[1] == values[2] && values[1] == values[3]
-    winner = "winner is #{turn}"
-  elsif values[4] == values[5] && values[4] == values[6]
-    winner = "winner is #{turn}"
-  elsif values[7] == values[8] && values[7] == values[9]
-    winner = "winner is #{turn}"
-  elsif values[1] == values[4] && values[1] == values[7]
-    winner = "winner is #{turn}"
-  elsif values[2] == values[5] && values[2] == values[8]
-    winner = "winner is #{turn}"
-  elsif values[3] == values[6] && values[3] == values[9]
-    winner = "winner is #{turn}"
-  elsif values[1] == values[5] && values[1] == values[9]
-    winner = "winner is #{turn}"
-  elsif values[3] == values[5] && values[3] == values[7]
-    winner = "winner is #{turn}"
-  end
-end
-
 def tic_tac_toe(player1, player2)
   turn = ""
   turn_counter = 0
-  winner = nil
+  winners = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+  player1_combination = []
+  player2_combination = []
 
-  values = {1 => 1,
-            2 => 2,
-            3 => 3,
-            4 => 4,
-            5 => 5,
-            6 => 6,
-            7 => 7,
-            8 => 8,
-            9 => 9}
-
-  table = "[#{values[1]}] [#{values[2]}] [#{values[3]}]\n[#{values[4]}] [#{values[5]}] [#{values[6]}]\n[#{values[7]}] [#{values[8]}] [#{values[9]}]"
+  values = [1,2,3,4,5,6,7,8,9]
+  table = "[#{values[0]}] [#{values[1]}] [#{values[2]}]\n[#{values[3]}] [#{values[4]}] [#{values[5]}]\n[#{values[6]}] [#{values[7]}] [#{values[8]}]"
   puts table
 
   while  turn_counter < 9
+      even_odd = turn_counter % 2
       #if even player1's turn
-      puts "#{player1}'s turn" if turn_counter % 2 == 0
-      puts "#{player2}'s turn" if turn_counter % 2 == 1
+      puts "#{player1}'s turn" if even_odd == 0
+      puts "#{player2}'s turn" if even_odd == 1
 
       puts "choose number "
       recieved_value = gets.chomp().to_i
       puts "------------------"
+
       #check if number is already used
-      if (1..9).include?(recieved_value) == false || values[recieved_value] != values.keys[recieved_value - 1]
+      if (1..9).include?(recieved_value) == false || values[recieved_value - 1] != recieved_value
         puts "!!number is already used or wrong character!!"
         redo
       end
 
-      values[recieved_value], turn = "X", player1 if turn_counter % 2 == 0
-      values[recieved_value], turn = "O", player2 if turn_counter % 2 == 1
+      if even_odd == 0
+        values[recieved_value - 1], turn = "X", player1
+        player1_combination << recieved_value
+      elsif even_odd == 1
+        values[recieved_value - 1], turn = "O", player2
+        player2_combination << recieved_value
+      end
 
-      table = "[#{values[1]}] [#{values[2]}] [#{values[3]}]\n[#{values[4]}] [#{values[5]}] [#{values[6]}]\n[#{values[7]}] [#{values[8]}] [#{values[9]}]"
+      table = "[#{values[0]}] [#{values[1]}] [#{values[2]}]\n[#{values[3]}] [#{values[4]}] [#{values[5]}]\n[#{values[6]}] [#{values[7]}] [#{values[8]}]"
 
       if turn_counter > 3
-        winner = check_winner(values, turn)
-        if winner
-          return winner, table
-          break
+        winners.each do |x|
+          return "Winner is: #{player1}" if (x - player1_combination).empty?
+          return "Winner is: #{player2}" if (x - player2_combination).empty?
         end
       end
 
@@ -79,4 +58,5 @@ def main
   puts tic_tac_toe(player1, player2)
 
 end
+
 main
