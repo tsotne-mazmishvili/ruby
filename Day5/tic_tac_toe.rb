@@ -22,7 +22,6 @@ def tic_tac_toe(player1, player2)
   turn = ""
   turn_counter = 0
   winner = nil
-  used_numbers = []
 
   values = {1 => 1,
             2 => 2,
@@ -46,7 +45,7 @@ def tic_tac_toe(player1, player2)
       recieved_value = gets.chomp().to_i
       puts "------------------"
       #check if number is already used
-      if (1..9).include?(recieved_value) == false || used_numbers.include?(recieved_value)
+      if (1..9).include?(recieved_value) == false || values[recieved_value] != values.keys[recieved_value - 1]
         puts "!!number is already used or wrong character!!"
         redo
       else
