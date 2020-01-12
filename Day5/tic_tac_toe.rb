@@ -41,7 +41,7 @@ def check_win(table, symbol, turn_counter, min_move_for_win, table_dimensions)
   end
   return win if win
 
-  #დიაგონალური(მარჯვნიდან მარცხნივ) ხაზის შემოწმება
+  #დიაგონალური(მარჯვნივნიდან მარცხნივ) ხაზის შემოწმება
   (table_dimensions - 1...table.length - (table_dimensions - 1)).step(table_dimensions - 1) do |index|
     if table[index] == symbol
       win = true
@@ -100,7 +100,8 @@ def table_visualisation(table_dimensions, biggest_number, table)
 end
 
 
-def user_interface(table_dimensions = 3)
+#შესაძლებელია ნებისმიერი ზომის მაგიდის შექმნა(table_dimensions)
+def tic_tac_toe(table_dimensions = 3)
   puts "|===============| Tic Tac Toe |===============|"
 
   puts "player1: "
@@ -133,8 +134,7 @@ def user_interface(table_dimensions = 3)
       table_visual = make_move(table, table_visual, turn["symbol"], recieved_number.to_s)
 
       if check_win(table, turn["symbol"], turn_counter, min_move_for_win, table_dimensions)
-        puts table_visual
-        return "Winner is " + turn["name"] + ", ***congratulations*** "
+        return table_visual, "Winner is " + turn["name"] + ", ***congratulations*** "
       end
 
       used_numbers << recieved_number
@@ -150,7 +150,7 @@ end
 
 
 def main
-  puts user_interface()
+  puts tic_tac_toe()
 end
 
 main
